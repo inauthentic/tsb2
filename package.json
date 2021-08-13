@@ -9,8 +9,12 @@
   "author": "Inauthentic",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.2",
     "chance": "^1.1.7",
     "console-stamp": "^3.0.3",
-    "faker": "^5.5.3"
+    "faker": "^5.5.3",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "set-terminal-title": "^1.0.1"
   }
 }

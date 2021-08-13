@@ -1,6 +1,7 @@
 {
-    "tasks": 1500,
-    "catchall": "@yourdomainhere.com",
-    "size": 7.5,
+    "tasks": 150,
+    "prefix": "EMAILPREFIX+",
+    "catchall": "@gmail.com",
+    "size": 11.5,
     "zipcode": 90210 
 }

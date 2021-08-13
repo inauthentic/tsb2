@@ -1,4 +1,3 @@
-const cheerio = require('cheerio');
 const fs = require('fs');
 const request = require('request-promise');
 const config = require('./config.json');
@@ -28,6 +27,11 @@ function genPhone() {
     }
     return pNumber;
 }
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
 class Task {
     constructor(props) {
         this.id = props.id;
@@ -75,7 +79,7 @@ class Task {
     async enterRaffle() {
         try {
             const response = await request({
-                url: `https://phr51lvaef.execute-api.us-east-1.amazonaws.com/form/submit?a=m&email=${this.firstName}${config.catchall}&first=${this.firstName}&last=${this.lastName}&zip=${config.zipcode}&telephone=${this.pNumber}&product_id=6731916411007&kind=shoe&size=${config.size}`,
+                url: `https://f1eb5xittl.execute-api.us-east-1.amazonaws.com/fragment/submit?a=m&email=${config.prefix}${getRandomInt(99999)}${config.catchall}&first=${this.firstName}&last=${this.lastName}&zip=${config.zipcode}&telephone=${this.pNumber}&product_id=6732003639423&kind=shoe&size=${config.size}`,
                 method: 'GET',
                 
                 headers: {
@@ -101,7 +105,7 @@ class Task {
             });
 
             if (response.statusCode == 200) {
-                console.log(chalk.green(` [TS Raffle] [ID: ${this.id}]     `) +   `Entered | ${this.firstName} ${this.lastName} | Status: ${response.statusCode}. `);
+                console.log(chalk.green(` [TS Raffle] [ID: ${this.id}]     `) +   `Entered | ${this.firstName} ${this.lastName} | Email: ${config.prefix}${getRandomInt(99999)}${config.catchall}|Status: ${response.statusCode}. `);
                 ++entered;
             }
             else if (response.statusCode == 404) {
@@ -110,9 +114,8 @@ class Task {
             }
             
         } catch (err) {
-            console.log(chalk.yellow(` [TS Raffle] [ID: ${this.id}]       `) + `Error has occured! Proxy: ${this.proxy} |  Status ${response.statusCode}`);
+            console.log(chalk.yellow(` [TS Raffle] [ID: ${this.id}]       `) + `Error has occured! Proxy: ${this.proxy} |  Status `);
                 ++errUnd;
-            console.log(rBody);
             
 			if (!proxies.length) {
 				console.error(`(ID ${this.id}) Out of Proxies!`);
